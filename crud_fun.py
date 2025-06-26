@@ -62,3 +62,28 @@ def delete_authors(authors):
         if id == str(aut['id']):
             print(f"{aut['id']}. Šalinama Autoriaus vardas {aut['name']} pavardė {aut['surname']}")
             del authors[authors.index(aut)]
+
+def load_default_data_books():
+    return [
+    {
+        'id': 1,
+        "title": "Laimės žiburys ",
+        "genre": "Novelė",
+        "author_id": 1
+    },
+    {
+        'id': 2,
+        "title": "Raketų medžioklė ",
+        "genre": "Vaikų literatūra",
+        "author_id": 2
+    },
+    {
+        'id': 3,
+        "title": "Pelėdžiuko sapnas ",
+        "genre": "Poezija",
+        "author_id": 3
+    }
+]
+
+print(load_default_data_books())
+
