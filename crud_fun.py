@@ -87,3 +87,11 @@ def load_default_data_books():
 
 print(load_default_data_books())
 
+def print_authors_and_books(authors, books):
+    for aut in authors:
+        print(f"{aut['id']}), Autoriaus vardas {aut['name']} pavardė {aut['surname']}")
+    for book in books:
+        print(f"{book['id']}), Pavadinimas {book['title']} žanras {book['genre']} autoriaus id {book['author_id']}")
+
+
+
