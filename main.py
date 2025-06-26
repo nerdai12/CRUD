@@ -17,7 +17,7 @@ authors = [
         "surname": "Degutytė"
     }
 ]
-id_counter = 0
+id_counter = 3
 
 while True:
     print("-------------------------------------------------------------------------------")
@@ -33,9 +33,6 @@ while True:
         case '1':
             for aut in authors:
                 print(f"{aut['id']}), Autoriaus vardas {aut['name']} pavardė {aut['surname']}")
-
-            print("-------------------------------------------------------------------------------")
-
         case '2':
             print("naujo autoriaus įtraukimas:")
             print("Įveskite vardą")
@@ -44,7 +41,6 @@ while True:
             surname = input()
             id_counter += 1
             authors.append({'id': id_counter, "name": name, "surname": surname})
-
         case '3':
             print("autorių redagavimas. Pasirinkite įrašo ID, kurį norite redaguoti.")
             id = input()
@@ -56,7 +52,6 @@ while True:
                     print("Įveskite pavardę")
                     aut['surname'] = input()
                     break
-
         case '4':
             print("Autorių šalinimas. Pasirinkite autoriaus ID, kurį norite pašalinti")
             id = input()
