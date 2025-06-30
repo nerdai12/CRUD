@@ -1,6 +1,8 @@
 import csv
 
 headers = ['id', 'name', 'surname']
+book_headers = ['id', 'title', 'genre', 'author_id']
+
 
 def load_authors():
     with open('english_authors_list.csv', mode='r', encoding='utf-8') as file:
@@ -92,4 +94,8 @@ with open('books.csv', mode='w', newline='', encoding='utf-8') as file:
     for book in books:
         writer.writerow(book)
 
-
+def save_books(books):
+    with open('books.csv', mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.DictWriter(file, fieldnames=book_headers)
+        writer.writeheader()
+        writer.writerows(books)

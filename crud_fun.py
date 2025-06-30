@@ -1,5 +1,7 @@
 import csv
 
+book_headers = ['id', 'title', 'genre', 'author_id']
+
 
 def print_info():
     print("-------------------------------------------------------------------------------")
@@ -9,6 +11,7 @@ def print_info():
     print("4. Šalinti autorius")
     print("5. Išeiti iš programos")
     print("6. Rodyti autoriaus knygas pagal ID")
+    print("7. Pridėti knygą autoriui")
     print("Pasirinkite veiksmą: ", end='')
     print("------------------------------------Pasirinkite--------------------------------")
 
@@ -103,7 +106,11 @@ def books():
 #     for book in books:
 #         print(f"{book['id']}), Pavadinimas {book['title']} žanras {book['genre']} autoriaus id {book['author_id']}")
 #
-
+def save_books(books):
+    with open('books.csv', mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.DictWriter(file, fieldnames=book_headers)
+        writer.writeheader()
+        writer.writerows(books)
 
 def assign_books_to_authors(authors, books):
     for author in authors:
@@ -127,3 +134,21 @@ def print_books_by_author(authors, books):
             print(f"  - {book['title']} ({book['genre']})")
     else:
         print("  - Knygų nerasta.")
+
+def add_book_to_author(books, authors):
+    author_id = input("Įveskite autoriaus ID, kuriam norite pridėti knygą: ")
+    author = next((a for a in authors if a['id'] == author_id), None)
+    if not author:
+        print("Toks autorius nerastas.")
+        return
+    title = input("Įveskite knygos pavadinimą: ")
+    genre = input("Įveskite knygos žanrą: ")
+    new_book_id = str(int(books[-1]['id']) + 1) if books else '1'
+    books.append({
+        'id': new_book_id,
+        'title': title,
+        'genre': genre,
+        'author_id': author_id
+    })
+    save_books(books)
+    print(f"Knyga '{title}' pridėta autoriui {author['name']} {author['surname']}.")
