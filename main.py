@@ -1,7 +1,7 @@
-from crud_fun import *
+from fileCrud import *
 from crud_fun import print_authors
 
-authors = load_default_data()
+authors = load_authors()
 id_counter = 3
 
 while True:
@@ -12,8 +12,7 @@ while True:
         case '1':
             print_authors(authors)
         case '2':
-            id_counter += 1
-            authors.append(create_authors(id_counter))
+            create_authors(authors)
         case '3':
             edit_authors(authors)
         case '4':

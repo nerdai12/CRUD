@@ -1,3 +1,6 @@
+import csv
+
+
 def print_info():
     print("-------------------------------------------------------------------------------")
     print("1. Atvaizduoti autorių sąrašą")
@@ -7,24 +10,26 @@ def print_info():
     print("5. Išeiti iš programos")
     print("------------------------------------Pasirinkite--------------------------------")
 
-def load_default_data():
-    return [
-    {
-        'id': 1,
-        "name": "Jonas ",
-        "surname": "Biliūnas"
-    },
-    {
-        'id': 2,
-        "name": "Tomas ",
-        "surname": "Dirgėla"
-    },
-    {
-        'id': 3,
-        "name": "Janina ",
-        "surname": "Degutytė"
-    }
-]
+def load_authors():
+    with open('english_authors_list.csv', mode='r', encoding='utf-8') as file:
+        return list(csv.reader(file))
+#     return [
+#     {
+#         'id': 1,
+#         "name": "Jonas ",
+#         "surname": "Biliūnas"
+#     },
+#     {
+#         'id': 2,
+#         "name": "Tomas ",
+#         "surname": "Dirgėla"
+#     },
+#     {
+#         'id': 3,
+#         "name": "Janina ",
+#         "surname": "Degutytė"
+#     }
+# ]
 
 def print_authors(authors):
     for aut in authors:
