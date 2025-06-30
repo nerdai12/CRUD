@@ -61,3 +61,35 @@ def print_info():
 def print_authors(authors):
     for aut in authors:
         print(f"{aut['id']}), Autoriaus vardas {aut['name']} pavardė {aut['surname']}")
+
+books = [
+    {
+        'id': 1,
+        "title": "Laimės žiburys",
+        "genre": "Novelė",
+        "author_id": 1
+    },
+    {
+        'id': 2,
+        "title": "Raketų medžioklė",
+        "genre": "Vaikų literatūra",
+        "author_id": 2
+    },
+    {
+        'id': 3,
+        "title": "Pelėdžiuko sapnas",
+        "genre": "Poezija",
+        "author_id": 3
+    }
+]
+
+
+with open('books.csv', mode='w', newline='', encoding='utf-8') as file:
+    fieldnames = ['id', 'title', 'genre', 'author_id']
+    writer = csv.DictWriter(file, fieldnames=fieldnames)
+
+    writer.writeheader()
+    for book in books:
+        writer.writerow(book)
+
+

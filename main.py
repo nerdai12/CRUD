@@ -1,8 +1,8 @@
 from fileCrud import *
-from crud_fun import print_authors
+from crud_fun import *
 
 authors = load_authors()
-id_counter = 3
+books = books()
 
 while True:
     print_info()
@@ -19,5 +19,11 @@ while True:
             delete_authors(authors)
         case '5':
             print("Programa sustabdyta")
+        case '6':
+            print_books_by_author(authors, books)
+        case _:
+            print("Neteisingas pasirinkimas, bandykite dar kartą.")
             break
+
+
 
