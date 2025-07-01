@@ -155,25 +155,25 @@ def print_books_by_author(authors, books):
 
 def add_book_to_author(books, authors):
     author_id = input("Įveskite autoriaus ID, kuriam norite pridėti knygą: ")
-    author = next((a for a in authors if a['id'] == author_id), None)
-    if not author:
-        print("Toks autorius nerastas.")
-        return
+    # author = next((a for a in authors if a['id'] == author_id), None)
+    # if not author:
+    #     print("Toks autorius nerastas.")
+    #     return
     title = input("Įveskite knygos pavadinimą: ")
     genre = input("Įveskite knygos žanrą: ")
-    new_book_id = str(int(books[-1]['id']) + 1) if books else '1'
-    books.append({
-        'id': new_book_id,
-        'title': title,
-        'genre': genre,
-        'author_id': author_id
-    })
-    print(f"Knyga '{title}' pridėta autoriui {author['name']} {author['surname']}.")
+    # # new_book_id = str(int(books[-1]['id']) + 1) if books else '1'
+    # books.append({
+    #     'id': new_book_id,
+    #     'title': title,
+    #     'genre': genre,
+    #     'author_id': author_id
+    # })
+    print(f"Knyga '{title}' pridėta autoriui {authors[1]} {authors[2]}.")
 
     conn = get_conn()
     cur = conn.cursor()
 
-    cur.execute("insert into books (title, genre) values (%s, %s)", (title, genre))
+    cur.execute("insert into books (title, genre, author_id) values (%s, %s, %s)", (title, genre, author_id))
     conn.commit()
 
     cur.close()
