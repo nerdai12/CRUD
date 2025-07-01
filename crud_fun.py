@@ -12,6 +12,7 @@ def print_info():
     print("5. Išeiti iš programos")
     print("6. Rodyti autoriaus knygas pagal ID")
     print("7. Pridėti knygą autoriui")
+    print("8. Pašalinti autoriaus knygą")
     print("Pasirinkite veiksmą: ", end='')
     print("------------------------------------Pasirinkite--------------------------------")
 
@@ -152,3 +153,32 @@ def add_book_to_author(books, authors):
     })
     save_books(books)
     print(f"Knyga '{title}' pridėta autoriui {author['name']} {author['surname']}.")
+
+def delete_book_by_author(books, authors):
+    print("Įveskite autoriaus ID, kurio knygą norite ištrinti:")
+    author_id = input()
+
+author = next((a for a in authors if a['id'] == author_id), None)
+if not author:
+        print("Toks autorius nerastas.")
+
+author_books = [b for b in books if b['author_id'] == author_id]
+if not author_books:
+    print("Šis autorius neturi knygų.")
+
+
+print(f"Autoriaus {author['name']} {author['surname']} knygos:")
+for b in author_books:
+    print(f"  {b['id']}: {b['title']} ({b['genre']})")
+
+print("Įveskite knygos ID, kurią norite pašalinti:")
+book_id = input()
+
+book_to_delete = next((b for b in books if b['id'] == book_id and b['author_id'] == author_id), None)
+if not book_to_delete:
+    print("Tokia knyga nerasta arba nepriklauso šiam autoriui.")
+
+
+books.remove(book_to_delete)
+save_books(books)
+print(f"Knyga „{book_to_delete['title']}“ pašalinta sėkmingai.")
