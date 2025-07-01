@@ -64,6 +64,24 @@ def edit_authors(authors):
     cur.close()
     conn.close()
 
+def delete_authors(authors):
+    print("Autorių šalinimas. Pasirinkite autoriaus ID, kurį norite pašalinti")
+    id = input()
+    for aut in authors:
+        if id == str(aut['id']):
+            print(f"{aut['id']}. Šalinama Autoriaus vardas {aut['name']} pavardė {aut['surname']}")
+
+    conn = get_conn()
+    cur = conn.cursor()
+
+    cur.execute("delete from authors where id = %s", (id,))
+    conn.commit()
+
+    cur.close()
+    conn.close()
+    # print("Atlikome trynimo veiksmą")
+
+
 
 
 def print_info():
