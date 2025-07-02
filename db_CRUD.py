@@ -212,6 +212,7 @@ def delete_book_by_author():
         cur.close()
         conn.close()
 #
+
 # def delete_book_by_author(books, authors):
 #     print("Įveskite autoriaus ID, kurio knygą norite ištrinti:")
 #     author_id = input()
