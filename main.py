@@ -26,6 +26,8 @@ while True:
             print_books_by_author(authors, books)
         case '7':
             add_book_to_author(books, authors)
+        case '8':
+            delete_book_by_author(books, authors)
         case _:
             print("Neteisingas pasirinkimas, bandykite dar kartą.")
             break

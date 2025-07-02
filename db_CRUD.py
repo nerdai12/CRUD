@@ -178,7 +178,39 @@ def add_book_to_author(books, authors):
 
     cur.close()
     conn.close()
-#
+
+def delete_book_by_author():
+    print("Įveskite autoriaus ID, kurio autorių norite ištrinti:")
+    # try:
+    #     author_id = int(input())
+    # except ValueError:
+    #     print("Blogas autoriaus ID formatas.")
+    #     return
+
+    conn = get_conn()
+    cur = conn.cursor()
+
+    try:
+        # Patikrinam, ar autorius turi knygų
+        cur.execute("SELECT COUNT(*) FROM books WHERE author_id = %s", (author_id,))
+        book_count = cur.fetchone()[0]
+
+        if book_count > 0:
+            print(f"Autorius turi {book_count} knygų ir jo ištrinti negalima.")
+            return
+
+        # Jei knygų nėra, ištrinam autorių
+        cur.execute("DELETE FROM authors WHERE id = %s", (author_id,))
+        conn.commit()
+        print(f"Autorius su ID={author_id} sėkmingai ištrintas.")
+
+    except Exception as e:
+        conn.rollback()
+        print("Įvyko klaida trinant duomenis:", e)
+
+    finally:
+        cur.close()
+        conn.close()
 #
 # def delete_book_by_author(books, authors):
 #     print("Įveskite autoriaus ID, kurio knygą norite ištrinti:")
@@ -224,4 +256,4 @@ def print_info():
 
 def print_authors(authors):
     for aut in authors:
-        print(f"{aut['id']}), Autoriaus vardas {aut['name']} pavardė {aut['surname']}")
+        print(f"{aut['i']}), Autoriaus vardas {aut['name']} pavardė {aut['surname']}")
